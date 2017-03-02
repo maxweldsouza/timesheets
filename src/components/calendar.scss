@@ -15,12 +15,15 @@
     display: inline-block;
     text-align: center;
     color: lighten($body-color, 20%);
+    font-size: .7rem;
 }
 
 .calendar-day {
     width: #{100% / 7};
     display: inline-block;
     text-align: center;
+    padding: 10px 0;
+    font-size: .8rem;
 }
 
 .calendar-day-padding {

@@ -8,7 +8,6 @@ class App extends Component {
         return (
             <div className='row'>
                 <div className='columns'>
-                    <h1>Timesheets</h1>
                     <SelectUser />
                 </div>
                 <Calendar month={1}/>
