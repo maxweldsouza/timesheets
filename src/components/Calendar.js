@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './calendar.scss';
+import calendar from '../calendar';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -34,6 +35,13 @@ let Calendar = ({
                     })}
                 </div>
             </div>
+            {calendar.fillMonth({ month, year }).map(week => {
+                return week.map(day => {
+                    return <span className='calendar-day' key={day+month}>
+                        {day}
+                    </span>;
+                });
+            })}
         </div>
     </div>;
 };

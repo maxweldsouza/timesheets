@@ -13,3 +13,9 @@
     font-size: 1.1rem;
     padding: 10px 0;
 }
+
+.calendar-day {
+    width: #{100% / 7};
+    display: inline-block;
+    text-align: center;
+}
