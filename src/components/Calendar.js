@@ -44,11 +44,11 @@ let Calendar = ({
                 (i >= 4 && day < 14)) {
                     cls += ' calendar-day-padding';
                 }
-                const timeKey = `${user}:${day}-${month}-${year}`;
+                const timeKey = `${user}:${month}-${year}`;
                 let approval = <div className='calendar-day-timing'>{' '}</div>;
-                if (timeKey in timesheet) {
+                if (timeKey in timesheet && day in timesheet[timeKey]) {
                     approval = <div className='calendar-day-timing'>
-                        {timesheet[timeKey].hours} hrs
+                        {timesheet[timeKey][day].hours} hrs
                     </div>;
                 }
                 return <span className={cls} key={day + month}>

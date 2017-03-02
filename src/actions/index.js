@@ -33,21 +33,23 @@ export const fetchMonthData = state => {
     const { month, year } = state.date;
     const user = state.user;
     return dispatch => {
-        dispatch(requestMonthData());
-        fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
-        .then(
-            function (response) {
-                if (response.status !== 200) {
-                    return;
+        if (!(`${user}:${month}-${year}` in state.timesheet)) {
+            dispatch(requestMonthData());
+            fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        return;
+                    }
+                    response.json().then(timesheet => {
+                        dispatch(recieveMonthData(timesheet, month, year, user));
+                    });
                 }
-                response.json().then(timesheet => {
-                    dispatch(recieveMonthData(timesheet, month, year, user));
-                });
-            }
-        )
-        .catch(function (err) {
-            console.log('Fetch Error :-S', err);
-        });
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+        }
     };
 };
 

@@ -3,9 +3,12 @@ const timesheet = (state = {}, action) => {
     case 'RECIEVE_MONTH_DATA':
         const newState = { ...state };
         action.timesheet.weeks.map(week => {
+            const key = `${action.user}:${action.month}-${action.year}`;
+            if (!(key in newState)) {
+                newState[key] = {};
+            }
             week.days_in_week.map(day => {
-                const key = `${action.user}:${day.day_number}-${action.month}-${action.year}`;
-                newState[key] = {
+                newState[key][day.day_number] = {
                     hours: day.hours
                 };
             });
