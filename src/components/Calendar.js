@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './calendar.css';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
