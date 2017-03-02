@@ -11,6 +11,17 @@ class App extends Component {
                     <SelectUser />
                 </div>
                 <Calendar month={1}/>
+                <div className='columns'>
+                    <textarea placeholder="Notes"></textarea>
+                    <div className='row'>
+                        <div className='small-6 columns'>
+                            <a className="button expanded" href="#">Approve</a>
+                        </div>
+                        <div className='small-6 columns'>
+                            <a className="button expanded" href="#">Reject</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
