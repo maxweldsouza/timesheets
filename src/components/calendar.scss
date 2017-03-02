@@ -25,9 +25,9 @@
     width: #{100% / 7};
     display: inline-block;
     text-align: center;
-    padding: 10px 0;
-    font-size: 1rem;
-    line-height: 1;
+    padding: 9px 0;
+    font-size: 1.2rem;
+    line-height: .9;
 }
 
 .calendar-day-timing {
@@ -37,5 +37,5 @@
 }
 
 .calendar-day-padding {
-    color: rgba($body-color, .7);
+    opacity: 0.3;
 }
