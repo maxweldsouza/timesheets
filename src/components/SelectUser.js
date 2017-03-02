@@ -6,10 +6,10 @@ import { selectUser } from '../actions';
 let SelectUser = ({ dispatch, users }) => {
     return (
         <div>
-            Select User:
             <select onChange={event => {
                 dispatch(selectUser(event.target.value))
             }}>
+                <option selected="selected">Select User</option>
                 {Object.keys(users).map(user => {
                     return <option value={user} key={user}>
                         {users[user].username}

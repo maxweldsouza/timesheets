@@ -15,13 +15,13 @@ let Calendar = ({
 }) => {
     return <div className='columns'>
         <div className='row calendar-header'>
-            <div className='small-4 columns'>
+            <div className='small-4 columns calendar-arrows'>
                 <a href='#' onClick={onPrevMonth}>&#8249;</a>
             </div>
             <div className='small-4 columns text-center'>
                 {months[month - 1]} {year}
             </div>
-            <div className='small-4 columns text-right'>
+            <div className='small-4 columns text-right calendar-arrows'>
                 <a href='#' onClick={onNextMonth}>&#8250;</a>
             </div>
         </div>
