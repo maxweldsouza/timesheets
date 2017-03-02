@@ -26,7 +26,7 @@ let Calendar = ({
                     <a href='#' onClick={onNextMonth}>Next</a>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row calendar-weekdays-container'>
                 <div className='col-xs-12'>
                     {weekdays.map(day => {
                         return <span key={day} className='calendar-weekday'>
@@ -35,9 +35,14 @@ let Calendar = ({
                     })}
                 </div>
             </div>
-            {calendar.fillMonth({ month, year }).map(week => {
+            {calendar.fillMonth({ month, year }).map((week, i) => {
                 return week.map(day => {
-                    return <span className='calendar-day' key={day+month}>
+                    let cls = 'calendar-day';
+                    if ((i === 0 && day > 7) ||
+                        (i >= 4 && day < 14)) {
+                        cls += ' calendar-day-padding';
+                    }
+                    return <span className={cls} key={day + month}>
                         {day}
                     </span>;
                 });

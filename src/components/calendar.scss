@@ -2,20 +2,27 @@
 
 .calendar-header {
     padding: 10px 0;
-    background: $white;
+    background: $light-gray;
+}
+
+.calendar-weekdays-container {
+    font-size: 1.1rem;
+    padding: 10px 0;
 }
 
 .calendar-weekday {
     width: #{100% / 7};
     display: inline-block;
     text-align: center;
-    /* border: solid 1px #ddd; */
-    font-size: 1.1rem;
-    padding: 10px 0;
+    color: lighten($body-color, 20%);
 }
 
 .calendar-day {
     width: #{100% / 7};
     display: inline-block;
     text-align: center;
+}
+
+.calendar-day-padding {
+    color: lighten($body-color, 40%);
 }

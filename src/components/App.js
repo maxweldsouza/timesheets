@@ -7,7 +7,7 @@ class App extends Component {
     render () {
         return (
             <div className="container-fluid">
-                <h1>Hello !</h1>
+                <h1>Timesheets</h1>
                 <SelectUser />
                 <Calendar month={1}/>
             </div>
