@@ -1,4 +1,11 @@
-const date = (state = {}, action) => {
+const dateObject = new Date();
+const today = {
+    day: dateObject.getUTCDate(),
+    month: dateObject.getUTCMonth() + 1,
+    year: dateObject.getUTCFullYear()
+};
+
+const date = (state = today, action) => {
     switch (action.type) {
     case 'SET_DAY':
         return {
