@@ -7,7 +7,7 @@ let SelectUser = ({ dispatch, users }) => {
     return (
         <div>
             <select onChange={event => {
-                dispatch(selectUser(event.target.value))
+                dispatch(selectUser(event.target.value));
             }}>
                 <option selected="selected">Select User</option>
                 {Object.keys(users).map(user => {

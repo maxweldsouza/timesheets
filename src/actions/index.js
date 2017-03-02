@@ -4,3 +4,15 @@ export const selectUser = id => {
         id
     };
 };
+
+export const nextMonth = () => {
+    return {
+        type: 'NEXT_MONTH'
+    };
+};
+
+export const prevMonth = () => {
+    return {
+        type: 'PREV_MONTH'
+    };
+};

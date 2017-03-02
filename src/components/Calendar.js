@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
+import { nextMonth, prevMonth } from '../actions';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -38,7 +39,7 @@ let Calendar = ({
             return week.map(day => {
                 let cls = 'calendar-day';
                 if ((i === 0 && day > 7) ||
-                    (i >= 4 && day < 14)) {
+                (i >= 4 && day < 14)) {
                     cls += ' calendar-day-padding';
                 }
                 return <span className={cls} key={day + month}>
@@ -56,17 +57,9 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onNextMonth: () =>
-        dispatch({
-            type: 'NEXT_MONTH'
-        }),
-        onPrevMonth: () =>
-        dispatch({
-            type: 'PREV_MONTH'
-        })
-    };
+const mapDispatchToProps = {
+    onNextMonth: nextMonth,
+    onPrevMonth: prevMonth
 };
 
 Calendar = connect(mapStateToProps, mapDispatchToProps)(Calendar);
