@@ -3,7 +3,7 @@ const user = (state = null, action) => {
     case 'SELECT_USER':
         return action.id;
     default:
-        return null;
+        return state;
     }
 };
 
