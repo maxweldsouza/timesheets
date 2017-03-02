@@ -1,10 +1,10 @@
-const user = (state = null, action) => {
-    switch (action.type) {
-    case 'SELECT_USER':
-        return action.id;
-    default:
-        return null;
-    }
-};
+import { combineReducers } from 'redux';
+import user from './user';
+import users from './users';
 
-export default user;
+const timesheetApp = combineReducers({
+    user,
+    users,
+});
+
+export default timesheetApp;
