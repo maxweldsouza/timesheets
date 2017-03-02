@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
-import { nextMonth, prevMonth } from '../actions';
+import { nextMonthAndGetData, prevMonthAndGetData } from '../actions';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -70,8 +70,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    onNextMonth: nextMonth,
-    onPrevMonth: prevMonth
+    onNextMonth: nextMonthAndGetData,
+    onPrevMonth: prevMonthAndGetData
 };
 
 Calendar = connect(mapStateToProps, mapDispatchToProps)(Calendar);

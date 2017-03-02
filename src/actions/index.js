@@ -1,13 +1,13 @@
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
 
 
-export const nextMonth = () => {
+const nextMonth = () => {
     return {
         type: 'NEXT_MONTH'
     };
 };
 
-export const prevMonth = () => {
+const prevMonth = () => {
     return {
         type: 'PREV_MONTH'
     };
@@ -29,7 +29,9 @@ export const recieveMonthData = (timesheet, month, year, user) => {
     };
 };
 
-export const fetchMonthData = (month, year, user) => {
+export const fetchMonthData = state => {
+    const { month, year } = state.date;
+    const user = state.user;
     return dispatch => {
         dispatch(requestMonthData());
         fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
@@ -56,10 +58,26 @@ const selectUser = user => {
     };
 };
 
+export const nextMonthAndGetData = () => {
+    return (dispatch, getState) => {
+        dispatch(nextMonth());
+        const state = getState();
+        dispatch(fetchMonthData(state));
+    };
+};
+
+export const prevMonthAndGetData = () => {
+    return (dispatch, getState) => {
+        dispatch(prevMonth());
+        const state = getState();
+        dispatch(fetchMonthData(state));
+    };
+};
+
 export const selectUserAndGetData = user => {
     return (dispatch, getState) => {
         dispatch(selectUser(user));
         const state = getState();
-        dispatch(fetchMonthData(state.date.month, state.date.year, user));
+        dispatch(fetchMonthData(state));
     };
 };
