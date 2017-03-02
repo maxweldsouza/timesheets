@@ -4,21 +4,36 @@ import './calendar.scss';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+
 let Calendar = ({
     month,
     year,
     onPrevMonth,
     onNextMonth
 }) => {
-    return <div className='row calendar-header'>
-        <div className='col-xs-4'>
-            <a href='#' onClick={onPrevMonth}>Prev</a>
-        </div>
-        <div className='col-xs-4'>
-            {months[month - 1]} {year}
-        </div>
-        <div className='col-xs-4 text-right'>
-            <a href='#' onClick={onNextMonth}>Next</a>
+    return <div className='row'>
+        <div className='col-xs-12'>
+            <div className='row calendar-header'>
+                <div className='col-xs-4'>
+                    <a href='#' onClick={onPrevMonth}>Prev</a>
+                </div>
+                <div className='col-xs-4'>
+                    {months[month - 1]} {year}
+                </div>
+                <div className='col-xs-4 text-right'>
+                    <a href='#' onClick={onNextMonth}>Next</a>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-xs-12'>
+                    {weekdays.map(day => {
+                        return <span key={day} className='calendar-weekday'>
+                            {day}
+                        </span>;
+                    })}
+                </div>
+            </div>
         </div>
     </div>;
 };
