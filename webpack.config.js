@@ -17,10 +17,15 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: extractCss.extract({
                     loader: [{
                         loader: 'css-loader', options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader', options: {
                             sourceMap: true
                         }
                     }]
