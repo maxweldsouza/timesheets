@@ -1,8 +1,14 @@
-$background: #f1f1f1;
+$background: linear-gradient(135deg, #5f6cff 0%,#6100ff 100%);
 $white: #fff;
 $light-gray: #f1f1f1;
-$body-color: #333;
+$body-color: $white;
 
 body {
-    background: $white;
+    background: $background;
+    color: $body-color;
+    height: 100vh;
+}
+
+a, a:hover, a:visited, a:active {
+    color: $body-color;
 }
