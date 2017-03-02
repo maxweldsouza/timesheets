@@ -9,8 +9,10 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 let Calendar = ({
+    user,
     month,
     year,
+    timesheet,
     onPrevMonth,
     onNextMonth
 }) => {
@@ -42,8 +44,16 @@ let Calendar = ({
                 (i >= 4 && day < 14)) {
                     cls += ' calendar-day-padding';
                 }
+                const timeKey = `${user}:${day}-${month}-${year}`;
+                let approval = <div className='calendar-day-timing'>{' '}</div>;
+                if (timeKey in timesheet) {
+                    approval = <div className='calendar-day-timing'>
+                        {timesheet[timeKey].hours} hrs
+                    </div>;
+                }
                 return <span className={cls} key={day + month}>
-                    {day}
+                    <div>{day}</div>
+                    {approval}
                 </span>;
             });
         })}
@@ -52,8 +62,10 @@ let Calendar = ({
 
 const mapStateToProps = state => {
     return {
+        user: state.user,
         month: state.date.month,
-        year: state.date.year
+        year: state.date.year,
+        timesheet: state.timesheet
     };
 };
 

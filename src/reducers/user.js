@@ -1,7 +1,7 @@
 const user = (state = null, action) => {
     switch (action.type) {
     case 'SELECT_USER':
-        return action.id;
+        return action.user;
     default:
         return state;
     }

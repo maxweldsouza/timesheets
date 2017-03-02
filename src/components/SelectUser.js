@@ -1,13 +1,13 @@
 // @flow
 import { connect } from 'react-redux';
 import React from 'react';
-import { selectUser } from '../actions';
+import { selectUserAndGetData } from '../actions';
 
 let SelectUser = ({ dispatch, users }) => {
     return (
         <div>
             <select onChange={event => {
-                dispatch(selectUser(event.target.value));
+                dispatch(selectUserAndGetData(event.target.value));
             }}>
                 <option selected="selected">Select User</option>
                 {Object.keys(users).map(user => {

@@ -49,13 +49,17 @@ export const fetchMonthData = (month, year, user) => {
     };
 };
 
-export const selectUser = user => {
+const selectUser = user => {
+    return {
+        type: 'SELECT_USER',
+        user
+    };
+};
+
+export const selectUserAndGetData = user => {
     return (dispatch, getState) => {
+        dispatch(selectUser(user));
         const state = getState();
         dispatch(fetchMonthData(state.date.month, state.date.year, user));
-        return {
-            type: 'SELECT_USER',
-            user
-        };
     };
 };
