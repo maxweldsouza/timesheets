@@ -6,9 +6,11 @@ import Calendar from './Calendar';
 class App extends Component {
     render () {
         return (
-            <div className="container-fluid">
-                <h1>Timesheets</h1>
-                <SelectUser />
+            <div className='row'>
+                <div className='columns'>
+                    <h1>Timesheets</h1>
+                    <SelectUser />
+                </div>
                 <Calendar month={1}/>
             </div>
         );

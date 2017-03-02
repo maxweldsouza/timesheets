@@ -13,41 +13,39 @@ let Calendar = ({
     onPrevMonth,
     onNextMonth
 }) => {
-    return <div className='row'>
-        <div className='col-xs-12'>
-            <div className='row calendar-header'>
-                <div className='col-xs-4'>
-                    <a href='#' onClick={onPrevMonth}>Prev</a>
-                </div>
-                <div className='col-xs-4'>
-                    {months[month - 1]} {year}
-                </div>
-                <div className='col-xs-4 text-right'>
-                    <a href='#' onClick={onNextMonth}>Next</a>
-                </div>
+    return <div className='columns'>
+        <div className='row calendar-header'>
+            <div className='small-4 columns'>
+                <a href='#' onClick={onPrevMonth}>Prev</a>
             </div>
-            <div className='row calendar-weekdays-container'>
-                <div className='col-xs-12'>
-                    {weekdays.map(day => {
-                        return <span key={day} className='calendar-weekday'>
-                            {day}
-                        </span>;
-                    })}
-                </div>
+            <div className='small-4 columns'>
+                {months[month - 1]} {year}
             </div>
-            {calendar.fillMonth({ month, year }).map((week, i) => {
-                return week.map(day => {
-                    let cls = 'calendar-day';
-                    if ((i === 0 && day > 7) ||
-                        (i >= 4 && day < 14)) {
-                        cls += ' calendar-day-padding';
-                    }
-                    return <span className={cls} key={day + month}>
+            <div className='small-4 columns text-right'>
+                <a href='#' onClick={onNextMonth}>Next</a>
+            </div>
+        </div>
+        <div className='row calendar-weekdays-container'>
+            <div className='columns'>
+                {weekdays.map(day => {
+                    return <span key={day} className='calendar-weekday'>
                         {day}
                     </span>;
-                });
-            })}
+                })}
+            </div>
         </div>
+        {calendar.fillMonth({ month, year }).map((week, i) => {
+            return week.map(day => {
+                let cls = 'calendar-day';
+                if ((i === 0 && day > 7) ||
+                    (i >= 4 && day < 14)) {
+                    cls += ' calendar-day-padding';
+                }
+                return <span className={cls} key={day + month}>
+                    {day}
+                </span>;
+            });
+        })}
     </div>;
 };
 
