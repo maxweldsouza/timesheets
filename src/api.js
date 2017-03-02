@@ -1,4 +1,4 @@
-const fetchUsers = ( dispatch ) => {
+const fetchUsers = dispatch => {
     fetch('https://timesheet-staging-aurity.herokuapp.com/api/users')
     .then(
         function (response) {
