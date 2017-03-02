@@ -10,10 +10,16 @@ let Calendar = ({
     onPrevMonth,
     onNextMonth
 }) => {
-    return <div>
-        <span onClick={onPrevMonth}>Prev</span>
+    return <div className='row calendar-header'>
+        <div className='col-xs-4'>
+            <a href='#' onClick={onPrevMonth}>Prev</a>
+        </div>
+        <div className='col-xs-4'>
             {months[month - 1]} {year}
-        <span onClick={onNextMonth}>Next</span>
+        </div>
+        <div className='col-xs-4 text-right'>
+            <a href='#' onClick={onNextMonth}>Next</a>
+        </div>
     </div>;
 };
 
@@ -27,13 +33,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onNextMonth: () =>
-            dispatch({
-                type: 'NEXT_MONTH'
-            }),
+        dispatch({
+            type: 'NEXT_MONTH'
+        }),
         onPrevMonth: () =>
-            dispatch({
-                type: 'PREV_MONTH'
-            })
+        dispatch({
+            type: 'PREV_MONTH'
+        })
     };
 };
 
