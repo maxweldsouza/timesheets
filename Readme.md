@@ -5,8 +5,8 @@ Babel
 Sass  
 Webpack  
 Jest  
-Eslint..
-Yarn..
+Eslint  
+Yarn  
 
 To get it running, clone the repo  
 Then run `yarn install`  
