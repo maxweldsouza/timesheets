@@ -30,6 +30,13 @@
     }
 }
 
+.calendar-week.approved .calendar-day-timing {
+    color: $approved-color;
+}
+.calendar-week.rejected .calendar-day-timing {
+    color: $rejected-color;
+}
+
 .calendar-weekdays-container {
     font-size: 1.1rem;
     padding: 10px 0;
