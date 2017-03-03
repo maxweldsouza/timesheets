@@ -1,14 +1,5 @@
 import date from './date';
 
-test('sets the day', () => {
-    expect(date({}, {
-        type: 'SET_DAY',
-        day: 10
-    })).toEqual({
-        day: 10
-    });
-});
-
 test('next month', () => {
     expect(date({
         month: 1
