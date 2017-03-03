@@ -1,6 +1,6 @@
 import calendar from './index';
 
-describe ('Calendar weekdays', () => {
+describe('Calendar weekdays', () => {
     test('2-3-2017', () => {
         expect(calendar.weekday({
             day: 2,
