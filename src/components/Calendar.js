@@ -70,7 +70,7 @@ let Calendar = ({
 
 Calendar.propTypes = {
     isFetching: React.PropTypes.bool.isRequired,
-    user: React.PropTypes.string.isRequired,
+    user: React.PropTypes.string,
     month: React.PropTypes.number.isRequired,
     year: React.PropTypes.number.isRequired,
     timesheet: React.PropTypes.object.isRequired,

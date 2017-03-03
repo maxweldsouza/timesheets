@@ -22,7 +22,7 @@ let SelectUser = ({ dispatch, users }) => {
 
 SelectUser.propTypes = {
     dispatch: React.PropTypes.func.isRequired,
-    users: React.PropTypes.array.isRequired
+    users: React.PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
