@@ -46,14 +46,18 @@ let Calendar = ({
             </div>
         </div>
         {calendar.fillMonth({ month, year }).map((week, i) => {
-            return <div className='row calendar-week'>
+            const timeKey = `${user}:${month}-${year}`;
+            let status = '';
+            if (timeKey in timesheet.weeks && i in timesheet.weeks[timeKey]) {
+                status = timesheet.weeks[timeKey][i].status || '';
+            }
+            return <div key={i} className={'row calendar-week ' + status}>
                 {week.map(day => {
                     let cls = 'calendar-day';
                     if (i === 0 && day > 7 ||
                         i >= 4 && day < 14) {
                         cls += ' calendar-day-padding';
                     }
-                    const timeKey = `${user}:${month}-${year}`;
                     let approval = <div className='calendar-day-timing'>{' '}</div>;
                     if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
                         approval = <div className='calendar-day-timing'>
