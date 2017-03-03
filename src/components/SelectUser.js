@@ -4,7 +4,7 @@ import { selectUserAndGetData } from '../actions';
 
 let SelectUser = ({ dispatch, users }) => {
     return (
-        <div>
+        <div className='columns'>
             <select onChange={event => {
                 dispatch(selectUserAndGetData(event.target.value));
             }} defaultValue={null}>

@@ -7,9 +7,7 @@ class App extends Component {
     render () {
         return (
             <div className='row'>
-                <div className='columns'>
-                    <SelectUser />
-                </div>
+                <SelectUser />
                 <Calendar month={1}/>
                 <Approval />
             </div>
