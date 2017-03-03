@@ -89,7 +89,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     onNextMonth: nextMonthAndGetData,
     onPrevMonth: prevMonthAndGetData,
-    selectWeek
+    onSelectWeek: selectWeek
 };
 
 Calendar = connect(mapStateToProps, mapDispatchToProps)(Calendar);

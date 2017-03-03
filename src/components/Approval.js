@@ -25,5 +25,5 @@ Approval.propTypes = {
     onSendApproval: React.PropTypes.func.isRequired
 };
 
-Approval = connect(null, { sendApproval })(Approval);
+Approval = connect(null, { onSendApproval: sendApproval })(Approval);
 export default Approval;
