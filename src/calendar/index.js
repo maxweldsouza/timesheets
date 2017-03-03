@@ -61,7 +61,8 @@ const fillMonth = ({ month, year }) => {
     const days_in_current_month = daysInMonth({ month, year });
     const days_in_prev_month = daysInMonth(prevMonth({ month, year }));
     const flat = [
-        ...integers(days_in_prev_month).slice(days_in_prev_month - pad_before), ...integers(days_in_current_month),
+        ...integers(days_in_prev_month).slice(days_in_prev_month - pad_before),
+        ...integers(days_in_current_month),
         ...integers(31)
     ];
     return [

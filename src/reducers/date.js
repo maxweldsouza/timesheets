@@ -7,11 +7,6 @@ const today = {
 
 const date = (state = today, action) => {
     switch (action.type) {
-    case 'SET_DAY':
-        return {
-            ...state,
-            day: action.day
-        };
     case 'PREV_MONTH':
         if (state.month === 1) {
             return {
