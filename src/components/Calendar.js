@@ -9,6 +9,7 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 let Calendar = ({
+    isFetching,
     user,
     month,
     year,
@@ -22,7 +23,14 @@ let Calendar = ({
                 <a href='#' onClick={onPrevMonth}>&#10094;</a>
             </div>
             <div className='small-4 columns text-center'>
-                {months[month - 1]} {year}
+                <div className='row'>
+                    <div>
+                        {months[month - 1]} {year}
+                    </div>
+                    <div className='calendar-loading'>
+                        {isFetching ? 'Loading...' : null}
+                    </div>
+                </div>
             </div>
             <div className='small-4 columns text-right calendar-arrows'>
                 <a href='#' onClick={onNextMonth}>&#10095;</a>
@@ -62,6 +70,7 @@ let Calendar = ({
 
 const mapStateToProps = state => {
     return {
+        isFetching: state.timesheet.isFetching,
         user: state.user,
         month: state.date.month,
         year: state.date.year,
