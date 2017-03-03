@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
-import { nextMonthAndGetData, prevMonthAndGetData } from '../actions';
+import { nextMonthAndGetData, prevMonthAndGetData, selectWeek } from '../actions';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -10,12 +10,14 @@ const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 let Calendar = ({
     isFetching,
+    selected_week,
     user,
     month,
     year,
     timesheet,
     onPrevMonth,
-    onNextMonth
+    onNextMonth,
+    selectWeek
 }) => {
     return <div className='columns'>
         <div className='row calendar-header'>
@@ -51,7 +53,8 @@ let Calendar = ({
             if (timeKey in timesheet.weeks && i in timesheet.weeks[timeKey]) {
                 status = timesheet.weeks[timeKey][i].status || '';
             }
-            return <div key={i} className={'row calendar-week ' + status}>
+            const selected = i === selected_week ? ' selected' : '';
+            return <div key={i} className={`row calendar-week ${status} ${selected}`} onClick={() => selectWeek(i)} >
                 {week.map(day => {
                     let cls = 'calendar-day';
                     if (i === 0 && day > 7 ||
@@ -87,6 +90,7 @@ Calendar.propTypes = {
 const mapStateToProps = state => {
     return {
         isFetching: state.timesheet.isFetching,
+        selected_week: state.week,
         user: state.user,
         month: state.date.month,
         year: state.date.year,
@@ -96,7 +100,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     onNextMonth: nextMonthAndGetData,
-    onPrevMonth: prevMonthAndGetData
+    onPrevMonth: prevMonthAndGetData,
+    selectWeek
 };
 
 Calendar = connect(mapStateToProps, mapDispatchToProps)(Calendar);

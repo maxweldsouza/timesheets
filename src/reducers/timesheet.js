@@ -18,6 +18,7 @@ const timesheet = (state = {
         action.timesheet.weeks.sort((a, b) => a.week_number - b.week_number);
         action.timesheet.weeks.map((week, i) => {
             newState.weeks[key][i] = {
+                week_number: week.week_number,
                 status: week.status,
                 approved_by_id: week.approved_by_id,
                 approvers: week.approvers,

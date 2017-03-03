@@ -15,6 +15,17 @@
     font-size: 1.2rem;
 }
 
+.calendar-week {
+    &:hover {
+        background: rgba($white, .17);
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    &.selected {
+        background: rgba($black, .17);
+    }
+}
+
 .calendar-weekdays-container {
     font-size: 1.1rem;
     padding: 10px 0;

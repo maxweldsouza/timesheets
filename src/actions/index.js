@@ -6,6 +6,44 @@ const logErrors = () => {
     /* eslint-enable */
 };
 
+
+const requestUsers = () => {
+    return {
+        type: 'REQUEST_USERS'
+    };
+};
+
+const recieveUsers = users => {
+    return {
+        type: 'RECIEVE_USERS',
+        users
+    };
+};
+
+export const fetchUsers = state => {
+    return dispatch => {
+        if (!state.users.isFetching) {
+            dispatch(requestUsers());
+            fetch(`${endpoint}/users`)
+            .then(response => {
+                response.json().then(users => {
+                    dispatch(recieveUsers(users));
+                });
+            })
+            .catch(err => {
+                logErrors('Fetch Error :-S', err);
+            });
+        }
+    };
+};
+
+const selectUser = user => {
+    return {
+        type: 'SELECT_USER',
+        user
+    };
+};
+
 const nextMonth = () => {
     return {
         type: 'NEXT_MONTH'
@@ -56,42 +94,6 @@ export const fetchMonthData = state => {
     };
 };
 
-const requestUsers = () => {
-    return {
-        type: 'REQUEST_USERS'
-    };
-};
-
-const recieveUsers = users => {
-    return {
-        type: 'RECIEVE_USERS',
-        users
-    };
-};
-
-export const fetchUsers = state => {
-    return dispatch => {
-        if (!state.users.isFetching) {
-            dispatch(requestUsers());
-            fetch(`${endpoint}/users`)
-            .then(response => {
-                response.json().then(users => {
-                    dispatch(recieveUsers(users));
-                });
-            })
-            .catch(err => {
-                logErrors('Fetch Error :-S', err);
-            });
-        }
-    };
-};
-
-const selectUser = user => {
-    return {
-        type: 'SELECT_USER',
-        user
-    };
-};
 
 export const nextMonthAndGetData = () => {
     return (dispatch, getState) => {
@@ -114,5 +116,25 @@ export const selectUserAndGetData = user => {
         dispatch(selectUser(user));
         const state = getState();
         dispatch(fetchMonthData(state));
+    };
+};
+
+export const selectWeek = week => {
+    return {
+        type: 'SELECT_WEEK',
+        week
+    };
+};
+
+const sendApproval = (status) => {
+    return {
+        type: 'SEND_APPROVAL',
+        status
+    };
+};
+
+const approvalSuccess = () => {
+    return {
+        type: 'APPROVAL_SUCCESS'
     };
 };
