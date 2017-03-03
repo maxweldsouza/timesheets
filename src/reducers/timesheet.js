@@ -1,5 +1,7 @@
-const timesheet = (state = {}, action) => {
+const timesheet = (state = { isFetching: false }, action) => {
     switch (action.type) {
+    case 'REQUEST_MONTH_DATA':
+        return { ...state, isFetching: true };
     case 'RECIEVE_MONTH_DATA':
         const newState = { ...state };
         action.timesheet.weeks.map(week => {
@@ -13,6 +15,7 @@ const timesheet = (state = {}, action) => {
                 };
             });
         });
+        newState.isFetching = false;
         return newState;
     default:
         return state;

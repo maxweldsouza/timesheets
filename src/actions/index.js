@@ -32,20 +32,19 @@ export const recieveMonthData = (timesheet, month, year, user) => {
 export const fetchMonthData = state => {
     const { month, year } = state.date;
     const user = state.user;
+    const isFetching = state.timesheet.isFetching;
     return dispatch => {
-        if (!(`${user}:${month}-${year}` in state.timesheet)) {
+        if (!isFetching && user && month && year && !(`${user}:${month}-${year}` in state.timesheet)) {
             dispatch(requestMonthData());
             fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
-            .then(
-                function (response) {
-                    if (response.status !== 200) {
-                        return;
-                    }
-                    response.json().then(timesheet => {
-                        dispatch(recieveMonthData(timesheet, month, year, user));
-                    });
+            .then(response => {
+                if (response.status !== 200) {
+                    return;
                 }
-            )
+                response.json().then(timesheet => {
+                    dispatch(recieveMonthData(timesheet, month, year, user));
+                });
+            })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             });
