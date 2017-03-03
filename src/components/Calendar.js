@@ -19,13 +19,13 @@ let Calendar = ({
     return <div className='columns'>
         <div className='row calendar-header'>
             <div className='small-4 columns calendar-arrows'>
-                <a href='#' onClick={onPrevMonth}>&#8249;</a>
+                <a href='#' onClick={onPrevMonth}>&#10094;</a>
             </div>
             <div className='small-4 columns text-center'>
                 {months[month - 1]} {year}
             </div>
             <div className='small-4 columns text-right calendar-arrows'>
-                <a href='#' onClick={onNextMonth}>&#8250;</a>
+                <a href='#' onClick={onNextMonth}>&#10095;</a>
             </div>
         </div>
         <div className='row calendar-weekdays-container'>
