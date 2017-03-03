@@ -8,14 +8,14 @@ let Approval = ({
     return <div className='columns'>
         <div className='row'>
             <div className='small-6 columns'>
-                <a className="button expanded" href="#" onClick={() => {
+                <button className="button expanded" onClick={() => {
                     sendApproval('approved');
-                }}>Approve</a>
+                }}>Approve</button>
             </div>
             <div className='small-6 columns'>
-                <a className="button expanded" href="#" onClick={() => {
+                <button className="button expanded" onClick={() => {
                     sendApproval('rejected;');
-                }}>Reject</a>
+                }}>Reject</button>
             </div>
         </div>
     </div>;
