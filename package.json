@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "test": "jest --watch"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",

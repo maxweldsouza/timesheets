@@ -1,4 +1,5 @@
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
+const CLIENT_USER_ID = 3;
 
 const logErrors = () => {
     /* eslint-disable no-console */
@@ -72,6 +73,12 @@ export const recieveMonthData = (timesheet, month, year, user) => {
     };
 };
 
+const requestMonthDataFailure = () => {
+    return {
+        type: 'REQUEST_MONTH_DATA_FAILURE'
+    };
+};
+
 export const selectWeek = week => {
     return {
         type: 'SELECT_WEEK',
@@ -84,7 +91,7 @@ export const fetchMonthData = state => {
     const user = state.user;
     const isFetching = state.timesheet.isFetching;
     return dispatch => {
-        if (!isFetching && user && month && year && !(`${user}:${month}-${year}` in state.timesheet)) {
+        if (!isFetching && user && month && year) {
             dispatch(requestMonthData());
             dispatch(selectWeek(null));
             fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
@@ -94,9 +101,8 @@ export const fetchMonthData = state => {
                 });
             })
             .catch(err => {
-                /* eslint-disable no-console */
+                dispatch(requestMonthDataFailure());
                 logErrors('Fetch Error :-S', err);
-                /* eslint-enable */
             });
         }
     };
@@ -127,15 +133,51 @@ export const selectUserAndGetData = user => {
     };
 };
 
-export const sendApproval = status => {
+const sendApproval = status => {
     return {
         type: 'SEND_APPROVAL',
         status
     };
 };
 
-export const approvalSuccess = () => {
+const approvalSuccess = () => {
     return {
         type: 'APPROVAL_SUCCESS'
+    };
+};
+
+const approvalFailure = () => {
+    return {
+        type: 'APPROVAL_FAILURE'
+    };
+};
+
+export const postApproval = status => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const { week, user } = state;
+        const approvalPending = state.approval.approvalPending;
+        const { month, year } = state.date;
+        const key = `${user}:${month}-${year}`;
+        const valid = key in state.timesheet.weeks && week in state.timesheet.weeks[key];
+        const week_number = state.timesheet.weeks[key][week].week_number;
+        if (!approvalPending && week_number && user && valid) {
+            dispatch(sendApproval(status));
+            fetch(`${endpoint}/training/weeks/${week_number}/users/${CLIENT_USER_ID}`, {
+                method: 'post',
+                body: JSON.stringify({
+                    status
+                })
+            })
+            .then(response => {
+                response.json().then(() => {
+                    dispatch(approvalSuccess());
+                });
+            })
+            .catch(err => {
+                dispatch(approvalFailure());
+                logErrors('Error posting approval', err);
+            });
+        }
     };
 };

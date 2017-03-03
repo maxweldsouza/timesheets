@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { sendApproval } from '../actions';
+import { postApproval } from '../actions';
 
 let Approval = ({
-    onSendApproval
+    onPostApproval
 }) => {
     return <div className='columns'>
         <div className='row'>
             <div className='small-6 columns'>
                 <button className="button expanded" onClick={() => {
-                    onSendApproval('approved');
+                    onPostApproval('approved');
                 }}>Approve</button>
             </div>
             <div className='small-6 columns'>
                 <button className="button expanded" onClick={() => {
-                    onSendApproval('rejected;');
+                    onPostApproval('rejected');
                 }}>Reject</button>
             </div>
         </div>
@@ -22,8 +22,11 @@ let Approval = ({
 };
 
 Approval.propTypes = {
-    onSendApproval: React.PropTypes.func.isRequired
+    onPostApproval: React.PropTypes.func.isRequired
 };
 
-Approval = connect(null, { onSendApproval: sendApproval })(Approval);
+Approval = connect(null, {
+    onPostApproval: postApproval
+})(Approval);
+
 export default Approval;
