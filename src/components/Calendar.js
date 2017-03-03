@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
 import { nextMonthAndGetData, prevMonthAndGetData, selectWeek } from '../actions';
+import CalendarDay from './CalendarDay';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -56,21 +57,11 @@ let Calendar = ({
             const selected = i === selected_week ? ' selected' : '';
             return <div key={i} className={`row calendar-week ${status} ${selected}`} onClick={() => selectWeek(i)} >
                 {week.map(day => {
-                    let cls = 'calendar-day';
-                    if (i === 0 && day > 7 ||
-                        i >= 4 && day < 14) {
-                        cls += ' calendar-day-padding';
-                    }
-                    let approval = <div className='calendar-day-timing'>{' '}</div>;
+                    let duration = null;
                     if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
-                        approval = <div className='calendar-day-timing'>
-                            {timesheet.days[timeKey][day].hours} hrs
-                        </div>;
+                        duration = timesheet.days[timeKey][day].hours;
                     }
-                    return <span className={cls} key={day + month}>
-                        <div>{day}</div>
-                        {approval}
-                    </span>;
+                    return <CalendarDay day={day} duration={duration} week={i} />;
                 })}
             </div>;
         })}
