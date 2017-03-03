@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
 const CLIENT_USER_ID = 2;
 
