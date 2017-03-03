@@ -1,5 +1,5 @@
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
-const CLIENT_USER_ID = 3;
+const CLIENT_USER_ID = 2;
 
 const logErrors = () => {
     /* eslint-disable no-console */
@@ -156,14 +156,13 @@ export const postApproval = status => {
     return (dispatch, getState) => {
         const state = getState();
         const { week, user } = state;
-        const approvalPending = state.approval.approvalPending;
         const { month, year } = state.date;
         const key = `${user}:${month}-${year}`;
         if (!(key in state.timesheet.weeks && week in state.timesheet.weeks[key])) {
             return;
         }
         const week_number = state.timesheet.weeks[key][week].week_number;
-        if (!approvalPending && week_number && user) {
+        if (week_number && user) {
             dispatch(sendApproval(status));
             fetch(`${endpoint}/training/weeks/${week_number}/users/${CLIENT_USER_ID}`, {
                 method: 'post',
