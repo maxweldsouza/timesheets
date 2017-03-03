@@ -1,7 +1,7 @@
 import React from 'react';
 import CalendarDay from './CalendarDay';
 
-let CalendarWeek = ({
+const CalendarWeek = ({
     timesheet,
     user,
     month,
@@ -26,6 +26,17 @@ let CalendarWeek = ({
             return <CalendarDay key={day} day={day} duration={duration} week={week_no} />;
         })}
     </div>;
+};
+
+CalendarWeek.propTypes = {
+    timesheet: React.PropTypes.object.isRequired,
+    user: React.PropTypes.string,
+    month: React.PropTypes.number.isRequired,
+    year: React.PropTypes.number.isRequired,
+    week_no: React.PropTypes.number.isRequired,
+    days_of_week: React.PropTypes.array.isRequired,
+    selected_week: React.PropTypes.number,
+    selectWeek: React.PropTypes.func.isRequired
 };
 
 export default CalendarWeek;

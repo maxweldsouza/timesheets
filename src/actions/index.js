@@ -127,14 +127,14 @@ export const selectUserAndGetData = user => {
     };
 };
 
-export const sendApproval = (status) => {
+export const sendApproval = status => {
     return {
         type: 'SEND_APPROVAL',
         status
     };
 };
 
-const approvalSuccess = () => {
+export const approvalSuccess = () => {
     return {
         type: 'APPROVAL_SUCCESS'
     };

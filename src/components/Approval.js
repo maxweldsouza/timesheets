@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import { sendApproval } from '../actions';
 
 let Approval = ({
-    sendApproval,
+    onSendApproval
 }) => {
     return <div className='columns'>
         <div className='row'>
             <div className='small-6 columns'>
                 <button className="button expanded" onClick={() => {
-                    sendApproval('approved');
+                    onSendApproval('approved');
                 }}>Approve</button>
             </div>
             <div className='small-6 columns'>
                 <button className="button expanded" onClick={() => {
-                    sendApproval('rejected;');
+                    onSendApproval('rejected;');
                 }}>Reject</button>
             </div>
         </div>
     </div>;
+};
+
+Approval.propTypes = {
+    onSendApproval: React.PropTypes.func.isRequired
 };
 
 Approval = connect(null, { sendApproval })(Approval);

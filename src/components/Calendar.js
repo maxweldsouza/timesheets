@@ -18,7 +18,7 @@ let Calendar = ({
     timesheet,
     onPrevMonth,
     onNextMonth,
-    selectWeek
+    onSelectWeek
 }) => {
     return <div className='columns'>
         <div className='row calendar-header'>
@@ -57,13 +57,15 @@ let Calendar = ({
                 year={year}
                 week_no={i}
                 days_of_week={week}
-                selectWeek={selectWeek}
+                selectWeek={onSelectWeek}
                 selected_week={selected_week} />;
         })}
     </div>;
 };
 
 Calendar.propTypes = {
+    selected_week: React.PropTypes.number,
+    onSelectWeek: React.PropTypes.func.isRequired,
     isFetching: React.PropTypes.bool.isRequired,
     user: React.PropTypes.string,
     month: React.PropTypes.number.isRequired,

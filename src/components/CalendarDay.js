@@ -1,6 +1,6 @@
 import React from 'react';
 
-let CalendarDay = ({
+const CalendarDay = ({
     day,
     duration,
     week
@@ -16,6 +16,12 @@ let CalendarDay = ({
             {duration} hrs
         </div> : <div className='calendar-day-timing'>{' '}</div>}
     </span>;
+};
+
+CalendarDay.propTypes = {
+    day: React.PropTypes.number.isRequired,
+    duration: React.PropTypes.number,
+    week: React.PropTypes.number.isRequired
 };
 
 export default CalendarDay;
