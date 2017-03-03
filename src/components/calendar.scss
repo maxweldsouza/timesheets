@@ -7,6 +7,9 @@
 .calendar-loading {
     opacity: .5;
     font-size: .7rem;
+    &.hidden {
+        opacity: 0;
+    }
 }
 .calendar-arrows {
     font-size: 1.2rem;

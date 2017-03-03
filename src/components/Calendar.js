@@ -27,8 +27,8 @@ let Calendar = ({
                     <div>
                         {months[month - 1]} {year}
                     </div>
-                    <div className='calendar-loading'>
-                        {isFetching ? 'Loading...' : null}
+                    <div className={isFetching ? 'calendar-loading' : 'calendar-loading hidden' }>
+                        Loading...
                     </div>
                 </div>
             </div>
