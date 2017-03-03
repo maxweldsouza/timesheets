@@ -45,13 +45,6 @@ const prevMonth = ({ month, year }) => {
     return { month: month - 1, year };
 };
 
-const nextMonth = ({ month, year }) => {
-    if (month === 12) {
-        return { month: 1, year: year + 1 };
-    }
-    return { month: month + 1, year };
-};
-
 const integers = n => {
     const result = [];
     let i;

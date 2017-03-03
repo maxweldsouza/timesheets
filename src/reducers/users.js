@@ -1,9 +1,14 @@
-const users = (state = {}, action) => {
+const users = (state = {
+    isFetching: false,
+    data: {}
+}, action) => {
     switch (action.type) {
+    case 'REQUEST_USERS':
+        return { ...state, isFetching: true };
     case 'RECIEVE_USERS':
-        const newState = Object.assign({}, state);
+        const newState = { ...state, isFetching: false };
         action.users.map(user => {
-            newState[user.id] = {
+            newState.data[user.id] = {
                 username: user.username,
                 email: user.email
             };

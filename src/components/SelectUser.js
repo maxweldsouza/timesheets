@@ -9,15 +9,20 @@ let SelectUser = ({ dispatch, users }) => {
             <select onChange={event => {
                 dispatch(selectUserAndGetData(event.target.value));
             }} defaultValue={null}>
-                <option value={null}>Select User</option>
-                {Object.keys(users).map(user => {
+                <option value={null}>{users.isFetching ? 'Loading...' : 'Select User' }</option>
+                {Object.keys(users.data).map(user => {
                     return <option value={user} key={user}>
-                        {users[user].username}
+                        {users.data[user].username}
                     </option>;
                 })}
             </select>
         </div>
     );
+};
+
+SelectUser.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    users: React.PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {

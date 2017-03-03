@@ -1,5 +1,10 @@
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
 
+const logErrors = () => {
+    /* eslint-disable no-console */
+    console.log(...arguments);
+    /* eslint-enable */
+};
 
 const nextMonth = () => {
     return {
@@ -38,15 +43,44 @@ export const fetchMonthData = state => {
             dispatch(requestMonthData());
             fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
             .then(response => {
-                if (response.status !== 200) {
-                    return;
-                }
                 response.json().then(timesheet => {
                     dispatch(recieveMonthData(timesheet, month, year, user));
                 });
             })
-            .catch(function (err) {
-                console.log('Fetch Error :-S', err);
+            .catch(err => {
+                /* eslint-disable no-console */
+                logErrors('Fetch Error :-S', err);
+                /* eslint-enable */
+            });
+        }
+    };
+};
+
+const requestUsers = () => {
+    return {
+        type: 'REQUEST_USERS'
+    };
+};
+
+const recieveUsers = users => {
+    return {
+        type: 'RECIEVE_USERS',
+        users
+    };
+};
+
+export const fetchUsers = state => {
+    return dispatch => {
+        if (!state.users.isFetching) {
+            dispatch(requestUsers());
+            fetch(`${endpoint}/users`)
+            .then(response => {
+                response.json().then(users => {
+                    dispatch(recieveUsers(users));
+                });
+            })
+            .catch(err => {
+                logErrors('Fetch Error :-S', err);
             });
         }
     };

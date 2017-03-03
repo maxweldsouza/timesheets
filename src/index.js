@@ -4,8 +4,8 @@ import App from './components/App';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
-import api from './api';
 import thunkMiddleware from 'redux-thunk';
+import { fetchUsers } from './actions';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
@@ -23,4 +23,4 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-api.fetchUsers(store.dispatch);
+store.dispatch(fetchUsers(store.getState()));

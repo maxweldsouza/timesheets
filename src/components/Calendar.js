@@ -48,8 +48,8 @@ let Calendar = ({
         {calendar.fillMonth({ month, year }).map((week, i) => {
             return week.map(day => {
                 let cls = 'calendar-day';
-                if ((i === 0 && day > 7) ||
-                (i >= 4 && day < 14)) {
+                if (i === 0 && day > 7 ||
+                    i >= 4 && day < 14) {
                     cls += ' calendar-day-padding';
                 }
                 const timeKey = `${user}:${month}-${year}`;
@@ -66,6 +66,16 @@ let Calendar = ({
             });
         })}
     </div>;
+};
+
+Calendar.propTypes = {
+    isFetching: React.PropTypes.bool.isRequired,
+    user: React.PropTypes.string.isRequired,
+    month: React.PropTypes.number.isRequired,
+    year: React.PropTypes.number.isRequired,
+    timesheet: React.PropTypes.object.isRequired,
+    onNextMonth: React.PropTypes.func.isRequired,
+    onPrevMonth: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {

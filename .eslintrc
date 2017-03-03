@@ -163,7 +163,6 @@
         "prefer-const": 2,
         "prefer-spread": 2,
         "require-yield": 2,
-        "no-bitwise": 2,
-        "no-plusplus": 2
+        "no-bitwise": 2
     }
 }
