@@ -159,9 +159,11 @@ export const postApproval = status => {
         const approvalPending = state.approval.approvalPending;
         const { month, year } = state.date;
         const key = `${user}:${month}-${year}`;
-        const valid = key in state.timesheet.weeks && week in state.timesheet.weeks[key];
+        if (!(key in state.timesheet.weeks && week in state.timesheet.weeks[key])) {
+            return;
+        }
         const week_number = state.timesheet.weeks[key][week].week_number;
-        if (!approvalPending && week_number && user && valid) {
+        if (!approvalPending && week_number && user) {
             dispatch(sendApproval(status));
             fetch(`${endpoint}/training/weeks/${week_number}/users/${CLIENT_USER_ID}`, {
                 method: 'post',
@@ -172,6 +174,7 @@ export const postApproval = status => {
             .then(response => {
                 response.json().then(() => {
                     dispatch(approvalSuccess());
+                    dispatch(fetchMonthData(state));
                 });
             })
             .catch(err => {
