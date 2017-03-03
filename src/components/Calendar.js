@@ -20,7 +20,7 @@ let Calendar = ({
     onNextMonth,
     onSelectWeek
 }) => {
-    return <div className='columns'>
+    return <div className='columns calendar'>
         <div className='row calendar-header'>
             <div className='small-4 columns calendar-arrows'>
                 <a onClick={onPrevMonth}>&#10094;</a>
