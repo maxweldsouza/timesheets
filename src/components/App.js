@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import SelectUser from './SelectUser';
 import Calendar from './Calendar';
+import Approval from './Approval';
 
 class App extends Component {
     render () {
@@ -11,16 +12,7 @@ class App extends Component {
                     <SelectUser />
                 </div>
                 <Calendar month={1}/>
-                <div className='columns'>
-                    <div className='row'>
-                        <div className='small-6 columns'>
-                            <a className="button expanded" href="#">Approve</a>
-                        </div>
-                        <div className='small-6 columns'>
-                            <a className="button expanded" href="#">Reject</a>
-                        </div>
-                    </div>
-                </div>
+                <Approval />
             </div>
         );
     }

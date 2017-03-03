@@ -127,7 +127,7 @@ export const selectUserAndGetData = user => {
     };
 };
 
-const sendApproval = (status) => {
+export const sendApproval = (status) => {
     return {
         type: 'SEND_APPROVAL',
         status
