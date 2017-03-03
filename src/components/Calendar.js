@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
 import { nextMonthAndGetData, prevMonthAndGetData, selectWeek } from '../actions';
-import CalendarDay from './CalendarDay';
+import CalendarWeek from './CalendarWeek';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -49,21 +49,15 @@ let Calendar = ({
             </div>
         </div>
         {calendar.fillMonth({ month, year }).map((week, i) => {
-            const timeKey = `${user}:${month}-${year}`;
-            let status = '';
-            if (timeKey in timesheet.weeks && i in timesheet.weeks[timeKey]) {
-                status = timesheet.weeks[timeKey][i].status || '';
-            }
-            const selected = i === selected_week ? ' selected' : '';
-            return <div key={i} className={`row calendar-week ${status} ${selected}`} onClick={() => selectWeek(i)} >
-                {week.map(day => {
-                    let duration = null;
-                    if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
-                        duration = timesheet.days[timeKey][day].hours;
-                    }
-                    return <CalendarDay day={day} duration={duration} week={i} />;
-                })}
-            </div>;
+            return <CalendarWeek
+                timesheet={timesheet}
+                user={user}
+                month={month}
+                year={year}
+                week_no={i}
+                days_of_week={week}
+                selectWeek={selectWeek}
+                selected_week={selected_week} />;
         })}
     </div>;
 };
