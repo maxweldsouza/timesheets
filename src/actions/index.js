@@ -72,6 +72,13 @@ export const recieveMonthData = (timesheet, month, year, user) => {
     };
 };
 
+export const selectWeek = week => {
+    return {
+        type: 'SELECT_WEEK',
+        week
+    };
+};
+
 export const fetchMonthData = state => {
     const { month, year } = state.date;
     const user = state.user;
@@ -79,6 +86,7 @@ export const fetchMonthData = state => {
     return dispatch => {
         if (!isFetching && user && month && year && !(`${user}:${month}-${year}` in state.timesheet)) {
             dispatch(requestMonthData());
+            dispatch(selectWeek(null));
             fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
             .then(response => {
                 response.json().then(timesheet => {
@@ -116,13 +124,6 @@ export const selectUserAndGetData = user => {
         dispatch(selectUser(user));
         const state = getState();
         dispatch(fetchMonthData(state));
-    };
-};
-
-export const selectWeek = week => {
-    return {
-        type: 'SELECT_WEEK',
-        week
     };
 };
 
