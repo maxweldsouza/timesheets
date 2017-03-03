@@ -23,7 +23,7 @@ let CalendarWeek = ({
             if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
                 duration = timesheet.days[timeKey][day].hours;
             }
-            return <CalendarDay day={day} duration={duration} week={week_no} />;
+            return <CalendarDay key={day} day={day} duration={duration} week={week_no} />;
         })}
     </div>;
 };

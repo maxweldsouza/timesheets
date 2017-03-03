@@ -50,6 +50,7 @@ let Calendar = ({
         </div>
         {calendar.fillMonth({ month, year }).map((week, i) => {
             return <CalendarWeek
+                key={i}
                 timesheet={timesheet}
                 user={user}
                 month={month}
