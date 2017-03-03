@@ -46,24 +46,26 @@ let Calendar = ({
             </div>
         </div>
         {calendar.fillMonth({ month, year }).map((week, i) => {
-            return week.map(day => {
-                let cls = 'calendar-day';
-                if (i === 0 && day > 7 ||
-                    i >= 4 && day < 14) {
-                    cls += ' calendar-day-padding';
-                }
-                const timeKey = `${user}:${month}-${year}`;
-                let approval = <div className='calendar-day-timing'>{' '}</div>;
-                if (timeKey in timesheet && day in timesheet[timeKey]) {
-                    approval = <div className='calendar-day-timing'>
-                        {timesheet[timeKey][day].hours} hrs
-                    </div>;
-                }
-                return <span className={cls} key={day + month}>
-                    <div>{day}</div>
-                    {approval}
-                </span>;
-            });
+            return <div className='row calendar-week'>
+                {week.map(day => {
+                    let cls = 'calendar-day';
+                    if (i === 0 && day > 7 ||
+                        i >= 4 && day < 14) {
+                        cls += ' calendar-day-padding';
+                    }
+                    const timeKey = `${user}:${month}-${year}`;
+                    let approval = <div className='calendar-day-timing'>{' '}</div>;
+                    if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
+                        approval = <div className='calendar-day-timing'>
+                            {timesheet.days[timeKey][day].hours} hrs
+                        </div>;
+                    }
+                    return <span className={cls} key={day + month}>
+                        <div>{day}</div>
+                        {approval}
+                    </span>;
+                })}
+            </div>;
         })}
     </div>;
 };
