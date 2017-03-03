@@ -1,12 +1,5 @@
 This project is built with:  
-React  
-Redux  
-Babel  
-Sass  
-Webpack  
-Jest  
-Eslint  
-Yarn  
+React, Redux, Babel, Sass, Webpack, Jest, Eslint, Yarn
 
 To get it running, clone the repo  
 Then run `yarn install`  
