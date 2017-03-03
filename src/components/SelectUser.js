@@ -8,8 +8,8 @@ let SelectUser = ({ dispatch, users }) => {
         <div>
             <select onChange={event => {
                 dispatch(selectUserAndGetData(event.target.value));
-            }}>
-                <option selected="selected">Select User</option>
+            }} defaultValue={null}>
+                <option value={null}>Select User</option>
                 {Object.keys(users).map(user => {
                     return <option value={user} key={user}>
                         {users[user].username}
