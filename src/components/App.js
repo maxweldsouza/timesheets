@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import SelectUser from './SelectUser';
 import Calendar from './Calendar';
