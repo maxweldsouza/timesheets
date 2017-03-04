@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
-const CLIENT_USER_ID = 2;
+const CLIENT_USER_ID = 3;
 
 const logErrors = () => {
     /* eslint-disable no-console */
@@ -154,7 +154,7 @@ const approvalFailure = () => {
     };
 };
 
-export const postApproval = status => {
+export const putApproval = status => {
     return (dispatch, getState) => {
         const state = getState();
         const { week, user } = state;
@@ -163,14 +163,14 @@ export const postApproval = status => {
         if (!(key in state.timesheet.weeks && week in state.timesheet.weeks[key])) {
             return;
         }
-        const week_number = state.timesheet.weeks[key][week].week_number;
-        if (week_number && user) {
+        const week_id = state.timesheet.weeks[key][week].week_id;
+        if (week_id && user) {
             dispatch(sendApproval(status));
-            fetch(`${endpoint}/training/weeks/${week_number}/users/${CLIENT_USER_ID}`, {
-                method: 'post',
-                body: JSON.stringify({
-                    status
-                })
+            const formData = new FormData();
+            formData.append('status', status);
+            fetch(`${endpoint}/training/weeks/${week_id}/users/${CLIENT_USER_ID}`, {
+                method: 'put',
+                body: formData
             })
             .then(response => {
                 response.json().then(() => {
