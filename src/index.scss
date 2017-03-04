@@ -14,6 +14,11 @@ body {
     padding: 40px 15px;
 }
 
+#root {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
 a, a:hover, a:visited, a:active {
     color: $body-color;
 }
