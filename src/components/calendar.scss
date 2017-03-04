@@ -33,6 +33,9 @@
 .calendar-week.approved .calendar-day-timing {
     color: $approved-color;
 }
+.calendar-week.waiting .calendar-day-timing {
+    color: $waiting-color;
+}
 .calendar-week.rejected .calendar-day-timing {
     color: $rejected-color;
 }
