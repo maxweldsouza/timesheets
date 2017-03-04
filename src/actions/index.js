@@ -180,7 +180,7 @@ export const putApproval = status => {
             })
             .catch(err => {
                 dispatch(approvalFailure());
-                logErrors('Error posting approval', err);
+                logErrors('Error sending approval', err);
             });
         }
     };
