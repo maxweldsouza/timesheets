@@ -19,6 +19,7 @@ const daysInMonth = ({ month, year }) => {
     return days_in_month[month - 1];
 };
 
+// http://mathforum.org/dr.math/faq/faq.calendar.html
 const weekday = ({ day, month, year }) => {
     const year_last_2 = year % 100;
     let result = Math.floor(year_last_2 / 4);
