@@ -7,7 +7,7 @@ import timesheet from './timesheet';
 import approval from './approval';
 
 const timesheetApp = combineReducers({
-    user,
+    selectedUser: user,
     week,
     users,
     date,

@@ -80,7 +80,7 @@ const mapStateToProps = state => {
     return {
         isFetching: state.timesheet.isFetching,
         selected_week: state.week,
-        user: state.user,
+        user: state.selectedUser,
         month: state.date.month,
         year: state.date.year,
         timesheet: state.timesheet

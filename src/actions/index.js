@@ -85,7 +85,7 @@ export const selectWeek = week => {
 
 export const fetchMonthData = state => {
     const { month, year } = state.date;
-    const user = state.user;
+    const user = state.selectedUser;
     const isFetching = state.timesheet.isFetching;
     return dispatch => {
         if (!isFetching && user && month && year) {
