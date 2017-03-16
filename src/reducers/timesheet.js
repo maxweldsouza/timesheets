@@ -19,13 +19,10 @@ const timesheet = (state = {
         action.timesheet.weeks.map((week, i) => {
             newState.weeks[key][i] = {
                 week_number: week.week_number,
-                week_id: week.week_id,
                 status: week.status,
-                approved_by_id: week.approved_by_id,
-                approvers: week.approvers,
-                approved_by_date: week.approved_by_date
+                approved_by_id: week.approved_by
             };
-            week.days_in_week.map(day => {
+            week.days.map(day => {
                 newState.days[key][day.day_number] = {
                     hours: day.hours
                 };

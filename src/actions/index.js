@@ -1,7 +1,4 @@
-import fetch from 'isomorphic-fetch';
-
-const endpoint = 'https://timesheet-staging-aurity.herokuapp.com/api';
-const CLIENT_USER_ID = 3;
+import * as api from '../fakeApi';
 
 const logErrors = () => {
     /* eslint-disable no-console */
@@ -27,11 +24,9 @@ export const fetchUsers = state => {
     return dispatch => {
         if (!state.users.isFetching) {
             dispatch(requestUsers());
-            fetch(`${endpoint}/users`)
-            .then(response => {
-                response.json().then(users => {
-                    dispatch(recieveUsers(users));
-                });
+            api.getUsers()
+            .then(users => {
+                dispatch(recieveUsers(users));
             })
             .catch(err => {
                 logErrors('Fetch Error :-S', err);
@@ -68,7 +63,7 @@ const requestMonthData = () => {
 export const recieveMonthData = (timesheet, month, year, user) => {
     return {
         type: 'RECIEVE_MONTH_DATA',
-        timesheet: timesheet.data,
+        timesheet,
         month,
         year,
         user
@@ -96,11 +91,9 @@ export const fetchMonthData = state => {
         if (!isFetching && user && month && year) {
             dispatch(requestMonthData());
             dispatch(selectWeek(null));
-            fetch(`${endpoint}/training/weeks/${month}/${year}/${user}`)
-            .then(response => {
-                response.json().then(timesheet => {
-                    dispatch(recieveMonthData(timesheet, month, year, user));
-                });
+            api.getMonthData(user, month, year)
+            .then(timesheet => {
+                dispatch(recieveMonthData(timesheet, month, year, user));
             })
             .catch(err => {
                 dispatch(requestMonthDataFailure());
@@ -163,20 +156,12 @@ export const putApproval = status => {
         if (!(key in state.timesheet.weeks && week in state.timesheet.weeks[key])) {
             return;
         }
-        const week_id = state.timesheet.weeks[key][week].week_id;
-        if (week_id && user) {
+        if (user) {
             dispatch(sendApproval(status));
-            const formData = new FormData();
-            formData.append('status', status);
-            fetch(`${endpoint}/training/weeks/${week_id}/users/${CLIENT_USER_ID}`, {
-                method: 'put',
-                body: formData
-            })
-            .then(response => {
-                response.json().then(() => {
-                    dispatch(approvalSuccess());
-                    dispatch(fetchMonthData(state));
-                });
+            api.setWeekApproval(month, week, year, user, status)
+            .then(() => {
+                dispatch(approvalSuccess());
+                dispatch(fetchMonthData(state));
             })
             .catch(err => {
                 dispatch(approvalFailure());
