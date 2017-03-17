@@ -11,12 +11,13 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June',
 const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 let Calendar = ({
+    hours,
     isFetching,
     selected_week,
     user,
     month,
     year,
-    timesheet,
+    weeks,
     onPrevMonth,
     onNextMonth,
     onSelectWeek
@@ -51,11 +52,12 @@ let Calendar = ({
         </div>
         {calendar.fillMonth({ month, year }).map((week, i) => {
             return <CalendarWeek
+                hours={hours}
                 key={i}
-                timesheet={timesheet}
                 user={user}
                 month={month}
                 year={year}
+                weeks={weeks}
                 week_no={i}
                 days_of_week={week}
                 selectWeek={onSelectWeek}
@@ -71,19 +73,21 @@ Calendar.propTypes = {
     user: React.PropTypes.string,
     month: React.PropTypes.number.isRequired,
     year: React.PropTypes.number.isRequired,
-    timesheet: React.PropTypes.object.isRequired,
+    weeks: React.PropTypes.object.isRequired,
+    hours: React.PropTypes.object.isRequired,
     onNextMonth: React.PropTypes.func.isRequired,
     onPrevMonth: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
     return {
-        isFetching: state.timesheet.isFetching,
+        isFetching: state.weeks.isFetching,
         selected_week: state.week,
         user: state.selectedUser,
         month: state.date.month,
         year: state.date.year,
-        timesheet: state.timesheet
+        hours: state.hours,
+        weeks: state.weeks
     };
 };
 

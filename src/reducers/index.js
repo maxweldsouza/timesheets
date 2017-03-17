@@ -3,17 +3,17 @@ import user from './user';
 import week from './week';
 import users from './users';
 import date from './date';
-import timesheet from './timesheet';
 import approval from './approval';
 import hours from './hours';
+import weeks from './weeks';
 
 const timesheetApp = combineReducers({
     hours,
+    weeks,
     selectedUser: user,
     week,
     users,
     date,
-    timesheet,
     approval
 });
 

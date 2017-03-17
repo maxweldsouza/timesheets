@@ -11,74 +11,38 @@ const users = [
 
 const monthData = {
     '1:3-2017': {
-        weeks: [
-            {
-                week_number: 0,
+        hours: {
+            1: 3,
+            2: 6,
+            3: 8,
+            4: 7,
+            5: 8,
+            6: 6,
+            7: 8
+        },
+        weeks: {
+            0: {
                 status: 'approved',
-                approved_by: null,
-                days: [
-                    {
-                        day_number: 0,
-                        hours: 7
-                    },
-                    {
-                        day_number: 1,
-                        hours: 3
-                    },
-                    {
-                        day_number: 2,
-                        hours: 6
-                    },
-                    {
-                        day_number: 3,
-                        hours: 5
-                    },
-                    {
-                        day_number: 4,
-                        hours: 7
-                    },
-                    {
-                        day_number: 5,
-                        hours: 8
-                    }
-                ]
+                approved_by: null
             }
-        ]
+        }
     },
     '2:3-2017': {
-        weeks: [
-            {
-                week_number: 0,
+        hours: {
+            1: 7,
+            2: 3,
+            3: 6,
+            4: 7,
+            5: 4,
+            6: 7,
+            7: 5
+        },
+        weeks: {
+            0: {
                 status: 'rejected',
-                approved_by: null,
-                days: [
-                    {
-                        day_number: 0,
-                        hours: 6
-                    },
-                    {
-                        day_number: 1,
-                        hours: 5
-                    },
-                    {
-                        day_number: 2,
-                        hours: 7
-                    },
-                    {
-                        day_number: 3,
-                        hours: 6
-                    },
-                    {
-                        day_number: 4,
-                        hours: 7
-                    },
-                    {
-                        day_number: 5,
-                        hours: 8
-                    }
-                ]
+                approved_by: null
             }
-        ]
+        }
     }
 };
 

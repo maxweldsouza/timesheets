@@ -1,8 +1,5 @@
-import { combineReducers } from 'redux';
-
 const timesheet = (state = {
     isFetching: false,
-    days: {},
     weeks: {}
 }, action) => {
     switch (action.type) {
@@ -11,9 +8,6 @@ const timesheet = (state = {
     case 'RECIEVE_MONTH_DATA':
         const newState = { ...state, isFetching: false };
         const key = `${action.user}:${action.month}-${action.year}`;
-        if (!(key in newState.days)) {
-            newState.days[key] = {};
-        }
         if (!(key in newState.weeks)) {
             newState.weeks[key] = {};
         }
@@ -24,11 +18,6 @@ const timesheet = (state = {
                 status: week.status,
                 approved_by_id: week.approved_by
             };
-            week.days.map(day => {
-                newState.days[key][day.day_number] = {
-                    hours: day.hours
-                };
-            });
         });
         return newState;
     default:

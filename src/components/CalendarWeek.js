@@ -6,34 +6,31 @@ const isPadding = (week, day) => {
 };
 
 const CalendarWeek = ({
-    timesheet,
-    user,
-    month,
-    year,
+    hours,
+    weeks,
     week_no,
     days_of_week,
     selected_week,
     selectWeek
 }) => {
-    const timeKey = `${user}:${month}-${year}`;
-    let status = '';
-    if (timeKey in timesheet.weeks && week_no in timesheet.weeks[timeKey]) {
-        status = timesheet.weeks[timeKey][week_no].status || '';
-    }
+    const status = weeks[week_no] && weeks[week_no].status || '';
     const selected = week_no === selected_week ? ' selected' : '';
-    return <div className={`row calendar-week ${status} ${selected}`} onClick={() => selectWeek(week_no)} >
+    return <div
+        className={`row calendar-week ${status} ${selected}`}
+        onClick={() => selectWeek(week_no)} >
         {days_of_week.map(day => {
-            let duration = null;
-            if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
-                duration = timesheet.days[timeKey][day].hours;
-            }
-            return <CalendarDay isPadding={isPadding(week_no, day)} key={day} day={day} duration={duration} />;
+            return <CalendarDay
+                key={day}
+                day={day}
+                isPadding={isPadding(week_no, day)}
+                duration={hours[day]} />;
         })}
     </div>;
 };
 
 CalendarWeek.propTypes = {
-    timesheet: React.PropTypes.object.isRequired,
+    hours: React.PropTypes.object.isRequired,
+    weeks: React.PropTypes.object.isRequired,
     user: React.PropTypes.string,
     month: React.PropTypes.number.isRequired,
     year: React.PropTypes.number.isRequired,
