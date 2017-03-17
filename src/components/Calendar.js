@@ -5,7 +5,7 @@ import calendar from '../calendar';
 import { selectWeek } from '../actions';
 import CalendarWeek from './CalendarWeek';
 import CalendarHeader from './CalendarHeader';
-const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+import CalendarWeekdays from './CalendarWeekdays';
 
 let Calendar = ({
     hours,
@@ -18,15 +18,7 @@ let Calendar = ({
 }) => {
     return <div className='columns calendar'>
         <CalendarHeader />
-        <div className='row calendar-weekdays-container'>
-            <div>
-                {weekdays.map(day => {
-                    return <span key={day} className='calendar-weekday'>
-                        {day}
-                    </span>;
-                })}
-            </div>
-        </div>
+        <CalendarWeekdays />
         {calendar.fillMonth({ month, year }).map((week, i) => {
             return <CalendarWeek
                 hours={hours}
