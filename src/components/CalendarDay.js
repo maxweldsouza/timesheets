@@ -3,11 +3,10 @@ import React from 'react';
 const CalendarDay = ({
     day,
     duration,
-    week
+    isPadding
 }) => {
     let cls = 'calendar-day';
-    if (week === 0 && day > 7 ||
-        week >= 4 && day < 14) {
+    if (isPadding) {
         cls += ' calendar-day-padding';
     }
     return <span className={cls}>
@@ -21,7 +20,7 @@ const CalendarDay = ({
 CalendarDay.propTypes = {
     day: React.PropTypes.number.isRequired,
     duration: React.PropTypes.number,
-    week: React.PropTypes.number.isRequired
+    isPadding: React.PropTypes.bool.isRequired
 };
 
 export default CalendarDay;

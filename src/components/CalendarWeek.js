@@ -1,6 +1,10 @@
 import React from 'react';
 import CalendarDay from './CalendarDay';
 
+const isPadding = (week, day) => {
+    return week === 0 && day > 7 || week >= 4 && day < 14;
+};
+
 const CalendarWeek = ({
     timesheet,
     user,
@@ -23,7 +27,7 @@ const CalendarWeek = ({
             if (timeKey in timesheet.days && day in timesheet.days[timeKey]) {
                 duration = timesheet.days[timeKey][day].hours;
             }
-            return <CalendarDay key={day} day={day} duration={duration} week={week_no} />;
+            return <CalendarDay isPadding={isPadding(week_no, day)} key={day} day={day} duration={duration} />;
         })}
     </div>;
 };
