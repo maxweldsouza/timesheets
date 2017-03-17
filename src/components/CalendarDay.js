@@ -11,7 +11,7 @@ const CalendarDay = ({
     }
     return <span className={cls}>
         <div>{day}</div>
-        {duration !== null ? <div className='calendar-day-timing'>
+        {duration && !isPadding ? <div className='calendar-day-timing'>
             {duration} hrs
         </div> : <div className='calendar-day-timing'>{' '}</div>}
     </span>;
