@@ -2,45 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './calendar.scss';
 import calendar from '../calendar';
-import { nextMonthAndGetData, prevMonthAndGetData, selectWeek } from '../actions';
+import { selectWeek } from '../actions';
 import CalendarWeek from './CalendarWeek';
-
-const months = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'];
-
+import CalendarHeader from './CalendarHeader';
 const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 let Calendar = ({
     hours,
-    isFetching,
     selected_week,
     user,
     month,
     year,
     weeks,
-    onPrevMonth,
-    onNextMonth,
     onSelectWeek
 }) => {
     return <div className='columns calendar'>
-        <div className='row calendar-header'>
-            <div className='small-4 columns calendar-arrows'>
-                <a onClick={onPrevMonth}>&#10094;</a>
-            </div>
-            <div className='small-4 columns text-center'>
-                <div className='row'>
-                    <div>
-                        {months[month - 1]} {year}
-                    </div>
-                    <div className={isFetching ? 'calendar-loading' : 'calendar-loading hidden' }>
-                        Loading...
-                    </div>
-                </div>
-            </div>
-            <div className='small-4 columns text-right calendar-arrows'>
-                <a onClick={onNextMonth}>&#10095;</a>
-            </div>
-        </div>
+        <CalendarHeader />
         <div className='row calendar-weekdays-container'>
             <div>
                 {weekdays.map(day => {
@@ -69,31 +46,24 @@ let Calendar = ({
 Calendar.propTypes = {
     selected_week: React.PropTypes.number,
     onSelectWeek: React.PropTypes.func.isRequired,
-    isFetching: React.PropTypes.bool.isRequired,
     user: React.PropTypes.string,
-    month: React.PropTypes.number.isRequired,
-    year: React.PropTypes.number.isRequired,
     weeks: React.PropTypes.object.isRequired,
-    hours: React.PropTypes.object.isRequired,
-    onNextMonth: React.PropTypes.func.isRequired,
-    onPrevMonth: React.PropTypes.func.isRequired
+    hours: React.PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
     return {
         isFetching: state.weeks.isFetching,
         selected_week: state.week,
-        user: state.selectedUser,
         month: state.date.month,
         year: state.date.year,
+        user: state.selectedUser,
         hours: state.hours,
         weeks: state.weeks
     };
 };
 
 const mapDispatchToProps = {
-    onNextMonth: nextMonthAndGetData,
-    onPrevMonth: prevMonthAndGetData,
     onSelectWeek: selectWeek
 };
 
