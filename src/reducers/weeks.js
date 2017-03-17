@@ -1,4 +1,5 @@
 const weeks = (state = {
+    isFetching: false,
     0: null,
     1: null,
     2: null,
