@@ -53,8 +53,13 @@ export const getUsers = () => {
 };
 
 export const getMonthData = (user, month, year) => {
+    const key = `${user}:${month}-${year}`;
     return new Promise(resolve => {
-        resolve(monthData[`${user}:${month}-${year}`]);
+        if (key in monthData) {
+            resolve(monthData[key]);
+        } else {
+            resolve({ hours: {}, weeks: {} });
+        }
     });
 };
 

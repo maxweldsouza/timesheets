@@ -7,7 +7,6 @@ const hours = (state = hoursDefault, action) => {
     switch (action.type) {
     case 'RECIEVE_MONTH_DATA':
         return {
-            ...state,
             ...action.timesheet.hours
         };
     default:

@@ -10,7 +10,7 @@ const weeks = (state = {
     case 'REQUEST_MONTH_DATA':
         return { ...state, isFetching: true };
     case 'RECIEVE_MONTH_DATA':
-        return { ...state, ...action.timesheet.weeks, isFetching: false };
+        return { ...action.timesheet.weeks, isFetching: false };
     default:
         return state;
     }
